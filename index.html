@@ -1,0 +1,762 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carillo, Kylle Christian R. | Landing Page</title>
+
+  <style>
+    :root {
+      --bg1: #fdf6ec;
+      --bg2: #e6f0ea;
+      --brand1: #a57c65;
+      --brand2: #8fa89f;
+      --paper: #ffffff;
+      --ink: #3b3b3b;
+      --accent: #8b6f61;
+      --muted: #e2dcd6;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Proxima Nova', 'Agrandir', sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--ink);
+    }
+
+    /* Hide radio buttons */
+    .state-radio {
+      display: none;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226, 220, 214, 0.8);
+    }
+
+    .topbar-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    /* TAB BUTTONS */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      justify-content: flex-end;
+    }
+
+    .tab-btn {
+      cursor: pointer;
+      border: none;
+      font-size: 14px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(165, 124, 101, 0.12);
+      color: var(--accent);
+      transition: 0.50s ease;
+      display: inline-block;
+      user-select: none;
+    }
+
+    .tab-btn:hover { background: rgba(165, 124, 101, 0.20); }
+
+    /* Active Tab Styling via Radio Buttons */
+    #tab-home-radio:checked ~ .topbar .tab-btn[for="tab-home-radio"],
+    #tab-childhood-radio:checked ~ .topbar .tab-btn[for="tab-childhood-radio"],
+    #tab-teenage-radio:checked ~ .topbar .tab-btn[for="tab-teenage-radio"],
+    #tab-college-radio:checked ~ .topbar .tab-btn[for="tab-college-radio"],
+    #tab-blog-radio:checked ~ .topbar .tab-btn[for="tab-blog-radio"],
+    #tab-social-radio:checked ~ .topbar .tab-btn[for="tab-social-radio"],
+    #tab-auto-radio:checked ~ .topbar .tab-btn[for="tab-auto-radio"],
+    #tab-albums-radio:checked ~ .topbar .tab-btn[for="tab-albums-radio"] {
+      background: rgba(165, 124, 101, 0.30);
+      font-weight: 700;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--brand1), var(--brand2));
+      color: #fff;
+      padding: 70px 16px 55px;
+    }
+
+    .hero-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      margin: 0 0 12px;
+      letter-spacing: 2px;
+    }
+
+    .hero p {
+      margin: 0 0 18px;
+      line-height: 1.7;
+      opacity: 0.95;
+      max-width: 62ch;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.16);
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { background: rgba(255, 255, 255, 0.28); }
+
+    .btn-primary {
+      background: #fff;
+      color: var(--accent);
+      border-color: #fff;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover { opacity: 0.92; }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-card {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      border-radius: 18px;
+      padding: 18px 16px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.10);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-card ul {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.7;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    /* WRAP */
+    .wrap {
+      max-width: 1050px;
+      margin: -35px auto 60px;
+      padding: 0 16px;
+    }
+
+    /* FIRST PAGE CARDS PANEL */
+    .panel {
+      background: var(--paper);
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+      padding: 22px 18px;
+      border: 1px solid rgba(226, 220, 214, 0.7);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      grid-column: span 6;
+      background: #fff;
+      border: 1px solid rgba(226, 220, 214, 0.8);
+      border-radius: 16px;
+      padding: 18px 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h2 {
+      font-family: 'Lora', serif;
+      color: var(--accent);
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      line-height: 1.8;
+      text-align: justify;
+      text-indent: 2em;
+      font-size: 15px;
+    }
+
+    /* Read button */
+    .read-btn{
+      display:inline-block;
+      border:none;
+      cursor:pointer;
+      font-size: 13px;
+      color: var(--accent);
+      background: rgba(139,111,97,0.10);
+      padding: 8px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      transition: 0.25s ease;
+    }
+    .read-btn:hover{ background: rgba(139,111,97,0.18); }
+
+    /* TAB CONTENT SECTIONS */
+    .section-full {
+      margin-top: 18px;
+      background: #fff;
+      border: 1px solid rgba(226, 220, 214, 0.8);
+      border-radius: 18px;
+      padding: 22px 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      display: none;
+      scroll-margin-top: 85px;
+    }
+
+    /* Section Visibility Logic */
+    #tab-home-radio:checked ~ .wrap #tab-home,
+    #tab-childhood-radio:checked ~ .wrap #tab-childhood,
+    #tab-teenage-radio:checked ~ .wrap #tab-teenage,
+    #tab-college-radio:checked ~ .wrap #tab-college,
+    #tab-blog-radio:checked ~ .wrap #tab-blog,
+    #tab-social-radio:checked ~ .wrap #tab-social,
+    #tab-auto-radio:checked ~ .wrap #tab-auto,
+    #tab-albums-radio:checked ~ .wrap #tab-albums {
+      display: block;
+    }
+
+    .section-full h2 {
+      font-family: 'Lora', serif;
+      color: var(--accent);
+      margin: 0 0 10px;
+    }
+
+    .section-full p {
+      font-size: 15px;
+      line-height: 1.8;
+      text-align: justify;
+      text-indent: 2em;
+      margin-bottom: 14px;
+    }
+
+    sup {
+      font-size: 10px;
+      color: #8fa89f;
+      font-weight: bold;
+    }
+
+    .divider {
+      border: none;
+      height: 1px;
+      background: var(--muted);
+      margin: 24px 0;
+    }
+
+    /* Next/Prev */
+    .nav-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 18px;
+    }
+    .nav-btn {
+      display: inline-block;
+      cursor: pointer;
+      padding: 10px 14px;
+      background-color: #8b6f61;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+      border:none;
+      font-size: 14px;
+      user-select: none;
+    }
+    .nav-btn:hover { background-color: #6d4f39; }
+
+    footer {
+      background: var(--accent);
+      color: #fff;
+      padding: 22px 16px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* ===== Portrait image on the RIGHT (Childhood/Teenage/College) ===== */
+    .life-row{
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 18px;
+      align-items: start;
+      margin-top: 12px;
+    }
+    .life-portrait{
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid rgba(226, 220, 214, 0.8);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      display: block;
+    }
+
+    /* ===== Albums (click category to show 3 photos) ===== */
+    .album-buttons{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 10px 0 16px;
+    }
+    .album-btn{
+      cursor: pointer;
+      border: none;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(139,111,97,0.12);
+      color: var(--accent);
+      transition: 0.25s ease;
+      font-weight: 600;
+      display: inline-block;
+      user-select: none;
+    }
+    .album-btn:hover{ background: rgba(139,111,97,0.18); }
+
+    /* Album Active Styling */
+    #album-me-radio:checked ~ .album-buttons .album-btn[for="album-me-radio"],
+    #album-family-radio:checked ~ .album-buttons .album-btn[for="album-family-radio"],
+    #album-friends-radio:checked ~ .album-buttons .album-btn[for="album-friends-radio"] {
+      background: rgba(139,111,97,0.30);
+    }
+
+    .album-grid{
+      display: none;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin: 12px 0 18px;
+    }
+
+    /* Album Grid Visibility */
+    #album-me-radio:checked ~ #album-me,
+    #album-family-radio:checked ~ #album-family,
+    #album-friends-radio:checked ~ #album-friends {
+      display: grid;
+    }
+
+    .album-item{
+      grid-column: span 4;
+      background:#fff;
+      border: 1px solid rgba(226, 220, 214, 0.8);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    }
+    .album-item img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+    }
+    .album-caption{
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .card { grid-column: span 12; }
+      .hero h1 { font-size: 38px; }
+      .hero-side { margin-top: 10px; }
+      .hero-img { width: 200px; height: 200px; }
+
+      .life-row{ grid-template-columns: 1fr; }
+      .life-portrait{ height: 320px; }
+
+      .album-item{ grid-column: span 12; }
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- STATE RADIOS FOR MAIN TABS -->
+  <input type="radio" name="main-tabs" id="tab-home-radio" class="state-radio" checked>
+  <input type="radio" name="main-tabs" id="tab-childhood-radio" class="state-radio">
+  <input type="radio" name="main-tabs" id="tab-teenage-radio" class="state-radio">
+  <input type="radio" name="main-tabs" id="tab-college-radio" class="state-radio">
+  <input type="radio" name="main-tabs" id="tab-blog-radio" class="state-radio">
+  <input type="radio" name="main-tabs" id="tab-social-radio" class="state-radio">
+  <input type="radio" name="main-tabs" id="tab-auto-radio" class="state-radio">
+  <input type="radio" name="main-tabs" id="tab-albums-radio" class="state-radio">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <label class="brand" for="tab-home-radio">Kylle Carillo</label>
+
+      <div class="tabs" aria-label="Tabs navigation">
+        <label class="tab-btn" for="tab-home-radio">Home</label>
+        <label class="tab-btn" for="tab-childhood-radio">Childhood</label>
+        <label class="tab-btn" for="tab-teenage-radio">Teenage</label>
+        <label class="tab-btn" for="tab-college-radio">College</label>
+        <label class="tab-btn" for="tab-blog-radio">Blog Part 1</label>
+        <label class="tab-btn" for="tab-social-radio">Blog Part 2</label>
+        <label class="tab-btn" for="tab-auto-radio">Blog Part 3</label>
+        <label class="tab-btn" for="tab-albums-radio">Albums</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Journey Through Youth</h1>
+        <p>
+          A landing page that gathers Kylle Christian Carillo's biography and writings in one place from childhood, teenage years, and college experiences, to blog stories, reflections on social media, and a deep passion for automotives.
+        </p>
+        <div class="cta">
+          <label class="btn btn-primary" for="tab-blog-radio">Read My Blog</label>
+          <label class="btn" for="tab-albums-radio">View Albums</label>
+        </div>
+      </div>
+      <div class="hero-side">
+        <img class="hero-img" src="images/me3.jpg" alt="Kylle Carillo Profile" />
+        <div class="hero-card">
+          <h3>Section Inside</h3>
+          <ul>
+            <li>Biography: Childhood, Teenage, College</li>
+            <li>Blog Part 1: Web Development & AI</li>
+            <li>Blog Part 2: Cars, Coding, Photography</li>
+            <li>Blog Part 3: Cars, Coding, Photography</li>
+            <li>Blog Part 3: Cars, Coding, Photography</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap" id="content">
+
+    <!-- HOME / CARDS -->
+    <section id="tab-home" class="section-full">
+      <div class="panel">
+        <div class="grid">
+          <div class="card">
+            <h2>Childhood</h2>
+            <p>My early years were filled with street games and neighborhood adventures. Those days taught me the value of friendship and the joy of simple play.</p>
+            <label class="read-btn" for="tab-childhood-radio">Read More</label>
+          </div>
+          <div class="card">
+            <h2>Teenage</h2>
+            <p>A period of discovery and growth. Navigating school, forming deep bonds, and starting to find my own path in the world.</p>
+            <label class="read-btn" for="tab-teenage-radio">Read More</label>
+          </div>
+          <div class="card">
+            <h2>College</h2>
+            <p>Focusing on my career in IT. Learning discipline, technical skills, and preparing for the professional world ahead.</p>
+            <label class="read-btn" for="tab-college-radio">Read More</label>
+          </div>
+          <div class="card">
+            <h2>My Passion</h2>
+            <p>Beyond coding, I have a deep love for automotive technology. Dreaming of a future where I can combine IT with my passion for cars.</p>
+            <label class="read-btn" for="tab-auto-radio">Read More</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <label class="nav-btn" for="tab-childhood-radio">Next: Childhood</label>
+      </div>
+    </section>
+
+    <!-- CHILDHOOD -->
+    <section id="tab-childhood" class="section-full">
+      <h2>Childhood Years</h2>
+
+      <div class="life-row">
+        <div>
+          <p>
+            <sup>1</sup>Growing up, I spent most of my childhood playing freely in the street.
+            <sup>2</sup>My friends from the neighborhood and I would gather every day after school to run around, laugh, and play the 90's games.
+            <sup>3</sup>Our street was our playground filled with endless adventures and joyful noise.
+            <sup>4</sup>Whether it was a simple game of tag, hide and seek, or riding bikes together, those moments with my childhood friends shaped some of my happiest memories.
+            <sup>5</sup>We built forts from whatever we could find and created imaginary worlds where anything was possible.
+            <sup>6</sup>Sometimes, we would just sit on the sidewalk sharing stories, secrets, and dreams about the future.
+            <sup>7</sup>Every day was an opportunity to explore, laugh, and grow together.
+            <sup>8</sup>Our bond was strong because we faced adventures and challenges side by side.
+            <sup>9</sup>Rain or shine, nothing stopped us from being outside and enjoying each other’s company.
+            <sup>10</sup>Those carefree days of playing in the street taught me the value of friendship, teamwork, and the simple joy of living in the moment.
+            <sup>11</sup>Even now, thinking back to those times brings a warm feeling of nostalgia and gratitude for the childhood friends who helped shape who I am.
+          </p>
+        </div>
+        <div>
+          <img class="life-portrait" src="images/childhood2.jpg" alt="Childhood portrait photo" />
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <label class="nav-btn" for="tab-home-radio">Previous: Home</label>
+        <label class="nav-btn" for="tab-teenage-radio">Next: Teenage</label>
+      </div>
+    </section>
+
+    <!-- TEENAGE -->
+    <section id="tab-teenage" class="section-full">
+      <h2>Teenage Years</h2>
+
+      <div class="life-row">
+        <div>
+          <p>
+            <sup>1</sup>My teenage years were full of change and discovery, a time when I began to understand myself more deeply.
+            <sup>2</sup>I spent countless hours with friends, sharing dreams, fears, and the excitement of growing up together.
+            <sup>3</sup>School brought both challenges and opportunities, pushing me to learn, adapt, and find my own path.
+            <sup>4</sup>There were moments of doubt and struggle, but also times of laughter and celebration.
+            <sup>5</sup>Friendships grew stronger as we navigated the ups and downs of adolescence side by side.
+            <sup>6</sup>Love and heartbreak made their first appearances, teaching me valuable lessons about emotions and resilience.
+            <sup>7</sup>I began to discover my passions and what truly mattered to me.
+            <sup>8</sup>Though the journey was sometimes messy, it shaped me into someone ready to face the future with courage and hope.
+          </p>
+        </div>
+        <div>
+          <img class="life-portrait" src="images/me4.jpg" alt="Teenage portrait photo" />
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <label class="nav-btn" for="tab-childhood-radio">Previous: Childhood</label>
+        <label class="nav-btn" for="tab-college-radio">Next: College</label>
+      </div>
+    </section>
+
+    <!-- COLLEGE -->
+    <section id="tab-college" class="section-full">
+      <h2>College Years</h2>
+
+      <div class="life-row">
+        <div>
+          <p>
+            <sup>1</sup>College was a time of learning, growth, and new experiences.
+            <sup>2</sup>I met people from many different backgrounds and learned to appreciate their perspectives and ideas.
+            <sup>3</sup>The workload was challenging, but it taught me discipline, time management, and responsibility.
+            <sup>4</sup>Living away from home helped me become more independent and confident in my choices.
+            <sup>5</sup>Friendships formed during these years were meaningful, and I learned the value of teamwork, honesty, and support.
+            <sup>6</sup>Through conversations and shared experiences, I developed patience and understanding for others.
+            <sup>7</sup>There were moments of doubt and struggle, but they became lessons that strengthened my character.
+            <sup>8</sup>These years shaped me into a more thoughtful, mature, and compassionate person, ready to face the world with confidence and care.
+          </p>
+        </div>
+        <div>
+          <img class="life-portrait" src="images/me1.jpg" alt="College portrait photo" />
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <label class="nav-btn" for="tab-teenage-radio">Previous: Teenage</label>
+        <label class="nav-btn" for="tab-blog-radio">Next: Blog Part 1</label>
+      </div>
+    </section>
+
+    <!-- BLOG PART 1 -->
+    <section id="tab-blog" class="section-full">
+      <h2>How ai is impacting IT lives right now.</h2>
+      <p>
+        As an IT student, AI it helps to create a code or fix the code it also helping tools to create a ideas. Right now, AI is dramatically changing the daily lives of IT professionals. Maraming routine tasks tulad ng system monitoring, patching, at log analysis ay na-a-automate na, kaya mas nakaka-focus ang IT teams sa mas strategic na projects. Sa software development, AI coding assistants help developers write, debug, at test code faster, which shortens project timelines and boosts productivity. Sa cybersecurity naman, AI-powered tools detect threats in real time and even respond automatically, giving IT departments stronger defenses against attacks. Bukod pa dito, AI is reshaping DevOps pipelines, making deployments smoother and more reliable. Pero kasama ng benefits, may challenges din—IT professionals need to adapt to new skills like prompt engineering, AI governance, at ethical use ng data. In short, AI is both a powerful ally and a demanding teacher, pushing IT lives to evolve at a rapid pace.
+      </p>
+
+      <hr class="divider" />
+
+      <h2>Programming language that challenge me the most.</h2>
+      <p>
+        For me, the programming language that challenges me the most is C++ because of its complexity and the need to manage memory manually. Unlike higher-level languages where many processes are handled automatically, C++ requires a deep understanding of pointers, memory allocation, and object lifecycles. Small mistakes can lead to bugs that are very hard to trace, like segmentation faults or memory leaks. At the same time, its syntax is dense and full of features—templates, multiple inheritance, operator overloading—that can be overwhelming when you’re still learning. While it’s powerful and widely used in systems programming, game development, and performance-critical applications, the steep learning curve makes it a constant challenge.
+      </p>
+
+      <hr class="divider" />
+
+      <h2>coding vs typing. the truth about IT programming.</h2>
+      <p>
+        Sa totoo lang, maraming tao ang nag-aakala na ang IT programming ay tungkol lang sa bilis ng pag-type. Pero the truth is, coding is way more than typing. Typing is just the mechanical act of putting words and symbols sa screen, pero ang tunay na essence ng programming ay problem-solving, logic, at creativity. Bago ka pa mag-type ng kahit isang linya ng code, kailangan mo munang intindihin ang problema, hatiin ito sa mas maliliit na steps, at mag-design ng solution na logical at efficient. Kapag malinaw na ang plano, doon pa lang papasok ang typing—parang translation ng ideas mo into a language na maiintindihan ng computer. Kaya hindi sukatan ng pagiging mahusay na programmer ang bilis ng kamay sa keyboard, kundi yung galing sa pag-isip at pag-debug ng solutions. In short, coding is about solving problems, typing is just the medium. Ang tunay na challenge sa IT programming ay kung paano mo gagawing elegant at working solution ang isang complex na problema, hindi kung gaano kabilis mong mai-type ang code.
+      </p>
+
+      <div class="nav-row">
+        <label class="nav-btn" for="tab-college-radio">Previous: College</label>
+        <label class="nav-btn" for="tab-social-radio">Next: Part 2</label>
+      </div>
+    </section>
+
+    <!-- PART 2 -->
+    <section id="tab-social" class="section-full">
+      <h2>Productivity or Social Media</h2>
+
+      <h2>Helpful or Wasting Time?</h2>
+      <p>
+        Honestly, hindi ko alam kung nakakatulong ba ang social media sa buhay ng isang student na katulad ko. Minsan, sobrang saya kasi nakakapag-interact ako sa friends and family or relatives, nakakanood ng mga funny videos na pampagaan ng mood, at nakaka-discover ng bagong ideas or bagong knowledge. Pero minsan din, parang trap siya nakakaubos ng oras, nakaka-stress, at minsan nakaka-compare ka sa ibang tao. Kaya naisip ko, is social media really helping or ginagawa lang akong tamad dahil nalilibang ako?
+      </p>
+
+      <hr class="divider" />
+
+      <h2>Good Side and Bad Side</h2>
+      <p>
+        The good side of social media, malaking tulong ang social media lalo na't madaling makipag communicate sa mga malalayong lugar, kailangan lamang ay internet connection, madali nang makipag-usap. As a student connection lang ang kailangan makakuha na nang information like announcement pag walang pasok, news at nakakatulong din sa pag search ng mga information para sa assignemnt or projects. Minsan ang social media ay nagiging stress reliever natin dahil nakakanood tayo ng mga content creator na tinitingala natin at dahil sa content creator, gumagaan ang ating pakiramdam, nawawala ang stress at nababawasan ang mga isipin kumbaga distracted tayo.
+      </p>
+
+      <p>
+        May dark side naman ang social media, speaking of distracted as a student sa sobrang distracted sa social media nakakalimutan na mag-aral dahil nawawala ang focus parang tatamarin na dahil na-enjoy ko manood dahil nalilibang ako. At isa pang dark side nagkakaroon ako ng comparison, minsan napapaisip ako na "Buti pa sila meron ganyan, merong ganto" parang feeling ko napag-iiwanan ako or parang nakikipag-kompitensya ako. Last, minsan nakakaubos ng energy dahil feeling ko napagod ako, parang tatamarin, unproductive dahil minsan nakahiga ako at minsan din hindi mautusan dahil busy kakapanood ng mga videos sa social media.
+      </p>
+
+      <hr class="divider" />
+
+      <h2>Realization</h2>
+      <p>
+        In conclusion, i realized na naka depende sa atin kung ano ang gagawin natin sa social media at hindi masama manood ng social media pero narealized ko na gawing balance. Binigyan ko ng limits ang sarili ko and I choosed a content na makakatulong sa growth and knowledge ko. Minsan narerealized ko na kung ano ang nakikita ko sa social media katulad na lamang na sinabi ko kanina kung meron man sila ngayon ng ganyan or ganto, gawin ko na lamang motivation at mag-sumikap at mag hangad na balang araw ako naman ang magkaron.
+      </p>
+
+      <div class="nav-row">
+        <label class="nav-btn" for="tab-blog-radio">Previous: Blog Part 1</label>
+        <label class="nav-btn" for="tab-auto-radio">Next: Part 3</label>
+      </div>
+    </section>
+
+    <!-- PART 3 -->
+    <section id="tab-auto" class="section-full">
+      <h2>Dreaming</h2>
+      <p>
+        Nung bata ako mahilig ako sa mga kotse dahil nalilibang ako at masaya ako na mayron ako nitong laruan. Mahilig din ako manood ng mga car shows or movies na about sa kotse, <strong>nakikita ko na ang magiging future ko ay about talaga sa kotse dahil nakita ko na nung ako ay naging binata na ay nahilig na ako sa mga kotse</strong>. Nangangangarap rin na magkaroon ng magandang kotse at makasakay sa mga luxury or mga sports car. Nahilig din ako sa kotse dahil sa aking tatay, nakikita ko na palagi siyang may ginagawa sa sasakyan at pag may inaayos sa sasakyan ay siya ang gumagawa, sa pamamagitan ng pag gawa nya ng mga sasakyan, ako ay nacucurious at nagkakaroon ng interest kung pano nya nalalaman ang mga sira at pano nya ito naayos, dahil jan nagkaroon ako ng interest tungkol sa mga kotse.
+      </p>
+
+      <hr class="divider" />
+
+      <h2>Future Careers</h2>
+      <p>
+        Automotive ang aking napili dahil mahilig ako dati mag-laro ng mga kotse at ngayon ay natuto naring mag-drive ng kotse. Dahil natuto na mag-drive, kailangan ko din malaman kung ano ang mga basic check-up sa sasakyan dahil hindi lamang ito basta-basta pwedeng sakyan dahil may mga hindi inaasahang pangyayari kapag na-abutan ng aksidente. Tulad na lamang ng pag check ng mga oil ng sasakyan, coolant, at tire pressure at marami pang iba. Dahil natuto akong mag-check ng mga basics, nagkaroon ako ng interest sa mga iba pang parts ng sasakyan kung pano ito gumagana at kung paano ito ayusin, sa tulong ng aking tatay kaya ko nalalaman ang mga kasagutan. Sa pamamagitan nyan naiisip ko na gusto ko maging career yan dahil sa dumadami narin ang mga sasakyan ngayon, so marami narin nag-papaayos ng mga sasakyan or nagpapagawa. Isa sa mga dahilan kung bakit ko rin napili ang automotive dahil maraming mekaniko ang mga mandadaya o magugulang dahil kahit konti lang ang sira ng sasakyan, sasabihin na maraming sira at maraming ipapabili na parts at mataas maningil ng labor. Balang araw na ako ay magiging mekaniko layunin ko na maging affordable lamang ang serbisyo at maging fair sa mga customers.
+      </p>
+      <h2>Automotive</h2>
+      <p>
+        In conclusion, balang araw matutupad ko rin ang mga pangarap na yan, hindi lamang para sa akin kundi para sa aking pamilya. Nagkaroon lamang ng curiousity at ngayon ay gusto nang tahakin ang landas na automotive hanggang sa maging passion. Marami pa ang pwede kong matutunan dahil ako ay nag sisimula pa lamang sa aking karera ng buhay, marami pang pagdadaanan na struggles pero hindi hadlang sa akin para tumigil sa mga napili kong landas. Bilang isang estudyante gusto ko rin maraming pang matutunan hindi lamang sa kotse kundi sa tinatahak ko na landas ngayon. Hindi man magiging madali ang magiging proseso pero balang araw lalabas ang resulta o tagumpay na pinaghirapan ko.
+      </p>
+      
+
+      <div class="nav-row">
+        <label class="nav-btn" for="tab-social-radio">Previous: Part 2</label>
+        <label class="nav-btn" for="tab-home-radio">Next: Home</label>
+      </div>
+    </section>
+
+    <!-- ALBUMS -->
+    <section id="tab-albums" class="section-full">
+      <h2>Photo Albums</h2>
+      
+      <!-- ALBUM STATE RADIOS -->
+      <input type="radio" name="album-tabs" id="album-me-radio" class="state-radio" checked>
+      <input type="radio" name="album-tabs" id="album-family-radio" class="state-radio">
+      <input type="radio" name="album-tabs" id="album-friends-radio" class="state-radio">
+
+      <div class="album-buttons">
+        <label class="album-btn" for="album-me-radio">Myself Photo</label>
+        <label class="album-btn" for="album-family-radio">Family Photo</label>
+        <label class="album-btn" for="album-friends-radio">Friends Photo</label>
+      </div>
+
+      <div id="album-me" class="album-grid">
+        <div class="album-item"><img src="images/me3.jpg" alt="Myself photo 1"><div class="album-caption">Myself 1</div></div>
+        <div class="album-item"><img src="images/me2.jpg" alt="Myself photo 2"><div class="album-caption">Myself 2</div></div>
+        <div class="album-item"><img src="images/me1.jpg" alt="Myself photo 3"><div class="album-caption">Myself 3</div></div>
+      </div>
+
+      <div id="album-family" class="album-grid">
+        <div class="album-item"><img src="family1.jpg" alt="Family photo 1"><div class="album-caption">Family 1</div></div>
+        <div class="album-item"><img src="family2.jpg" alt="Family photo 2"><div class="album-caption">Family 2</div></div>
+        <div class="album-item"><img src="family3.jpg" alt="Family photo 3"><div class="album-caption">Family 3</div></div>
+      </div>
+
+      <div id="album-friends" class="album-grid">
+        <div class="album-item"><img src="images/friends1.jpg" alt="Friends photo 1"><div class="album-caption">Friends 1</div></div>
+        <div class="album-item"><img src="images/friends2.jpg" alt="Friends photo 2"><div class="album-caption">Friends 2</div></div>
+        <div class="album-item"><img src="images/friends3.jpg " alt="Friends photo 3"><div class="album-caption">Friends 3</div></div>
+      </div>
+
+      <div class="nav-row">
+        <label class="nav-btn" for="tab-home-radio">Back: Home</label>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>© 2025 Carillo, Kylle Christian R. - ITAD</p>
+    <p>
+      <a href="mailto:kyllecarillo04@gmail.com">Email of the Author</a> |
+      <a href="#top">Back To Top</a>
+    </p>
+  </footer>
+
+</body>
+</html>
